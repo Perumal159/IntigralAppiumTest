@@ -2,6 +2,7 @@ package com.org.ExecutableTests;
 
 import org.testng.annotations.Test;
 
+import com.org.PageObjects.AndroidHomePage;
 import com.org.PageObjects.AndroidLoginPage;
 import com.org.TestBaseSetup.BaseSetup;
 
@@ -56,7 +57,31 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 	}
 	
+	@Test(priority=2)
+	public void VerifyItemsPricenDescription() throws InterruptedException  {
 
+		if(BaseSetup.Platform.equals("Android")) {
+			AndroidHomePage AHP = new AndroidHomePage(driver);
+			AHP.IdentifyElementDescriptionnPrice();
+			
+		}
+		else{
+			//Runs IOS Test
+		}
 
+	}
+	
+	@Test(priority=2)
+	public void SuccessfullCheckoutWithaddnDelete() throws InterruptedException  {
+
+		if(BaseSetup.Platform.equals("Android")) {
+			AndroidHomePage AHP = new AndroidHomePage(driver);
+			
+		}
+		else{
+			//Runs IOS Test
+		}
+
+	}
 
 }
