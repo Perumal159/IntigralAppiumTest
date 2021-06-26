@@ -14,18 +14,4 @@ For Cloning and Re-Executing the project, below are the minimum requirement
 - Android Device/Simulator with version 10
 - Since the project is developed in Maven, the dependencies are available in POM.xml. 
 
-# **Scenarios Covered:**
-- Login using invalid Credentials to verify proper Error message.
-- Login using valid Credentials to verify Successfull login.
-- Verify the product name and price in Homepage with the Item Description.
-- Validate whether user is able to add products and remove products and perform successfull checkout.
-- Verify if the user is not allowed to checkout when the shopping cart is empty.
-- Verify if alternate user login is having the proper item in home page and item description page.
-- Validate if the alternat user login is able to add item and remove item from cart and confirm.
-
-# **Defects Identified:**
-The following issues are identified in the application,
-- User is able to checkout without any item in the shopping cart. Ideally user should be prevented from checking out without any item in the shopping cart.
-- User with credentials (problem_user/secret_sauce) is having issue with item name and image displayed in the home page when compared with item description page. On click of any product from home page the name, image of product is not matching with the name and image in the item description page.
-- User with credentials (problem_user/secret_sauce) is unable to remove items that is added from the home page.
-- User with credentials (problem_user/secret_sauce) is unable to add the product "Sauce Labs Bike Light".
+For further information about the Scenarios covered, Defects identified etc. please go through the TestReport_v1.0 file
