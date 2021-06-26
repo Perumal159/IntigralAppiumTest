@@ -1,17 +1,16 @@
 package com.org.ExecutableTests;
 
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.org.PageObjects.AndroidCheckoutPage;
 import com.org.PageObjects.AndroidHomePage;
 import com.org.PageObjects.AndroidLoginPage;
 import com.org.TestBaseSetup.BaseSetup;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-
-import org.openqa.selenium.By;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
 
 public class SwagEndtoEndTest extends BaseSetup{
 
@@ -45,11 +44,11 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 		if(BaseSetup.Platform.equals("Android")) {
 			AndroidLoginPage ALP = new AndroidLoginPage(driver);
-
+			System.out.println("Going to enter credentials");
 
 			ALP.Login("standard_user", "secret_sauce");
 			ALP.AssertElementHomePage();
-
+			System.out.println("Home page loaded");
 		}
 		else{
 			//Runs IOS Test
@@ -71,12 +70,18 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 	}
 	
-	@Test(priority=2)
+	@Test(priority=3)
 	public void SuccessfullCheckoutWithaddnDelete() throws InterruptedException  {
 
 		if(BaseSetup.Platform.equals("Android")) {
 			AndroidHomePage AHP = new AndroidHomePage(driver);
-			
+			AndroidCheckoutPage ACP = new AndroidCheckoutPage(driver);
+			AHP.Add3ItemstoCart();
+			ACP.VerifyItemsinCart();
+			ACP.RemoveItemfromcart();
+			AHP.VerifyTheItemsAddedinHomepagenRemove();
+			ACP.verifyRemainingItem();
+			ACP.FinalCheckout();
 		}
 		else{
 			//Runs IOS Test

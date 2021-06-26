@@ -36,7 +36,47 @@ public class Common {
 		         ".scrollIntoView(new UiSelector().resourceIdMatches(\""+ele+"\"))"));
 
 	}
+	
+	public static PointOption CenterPoint() {
+		
+		Dimension WindowSize = driver.manage().window().getSize();
+		
+		PointOption PointOptionStart = PointOption.point(WindowSize.width/2,WindowSize.height/2);
+		
+		return PointOptionStart;
+	}
 
+	public PointOption swipeAction(String Dir) {
+		
+		PointOption PointOptionEnd = null;
+		
+		int edge = 10;
+		
+		Dimension WindowSize = driver.manage().window().getSize();
+		
+		
+		switch (Dir) {
+		
+		case "Down":
+			PointOptionEnd = PointOption.point(WindowSize.width/2,WindowSize.height-edge);
+			break;
+		
+		case "Up":
+			PointOptionEnd = PointOption.point(WindowSize.width/2,edge);
+			break;
+			
+		case "Left":
+			PointOptionEnd = PointOption.point(edge,WindowSize.height/2);
+			break;
+			
+		case "Right":
+			PointOptionEnd = PointOption.point(WindowSize.width-edge,WindowSize.height/2);
+			break;
+		
+		}
+		
+		return PointOptionEnd;
+	}
 	
 	public void WaitforPresentofElement(By Ele) {
 		wait.until(ExpectedConditions.presenceOfElementLocated(Ele));
