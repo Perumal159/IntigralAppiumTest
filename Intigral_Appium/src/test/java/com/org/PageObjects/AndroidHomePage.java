@@ -21,6 +21,7 @@ public class AndroidHomePage {
 	AppiumDriver<MobileElement> driver;
 	Common common;
 	public static ArrayList<String> ItemAdded;
+	public static ArrayList<String> ItemAdded2;
 	
 	public AndroidHomePage(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
@@ -36,6 +37,8 @@ public class AndroidHomePage {
 	private static By ShortItemInCart = By.xpath("//android.view.ViewGroup[@content-desc='test-Cart']/android.view.ViewGroup/android.widget.TextView");
 	private static By CheckoutBtn = By.xpath("//android.view.ViewGroup[@content-desc='test-Cart']/android.view.ViewGroup/android.widget.ImageView");
 	private static By RemoveBtn = By.xpath("//android.view.ViewGroup[@content-desc='test-REMOVE']");
+	private static By SidePanelBtn = By.xpath("//android.view.ViewGroup[@content-desc='test-Menu']/android.view.ViewGroup/android.widget.ImageView");
+	private static By Logoutbtn = By.xpath("//android.view.ViewGroup[@content-desc='test-LOGOUT']/android.widget.TextView");
 	
 	public void IdentifyElementDescriptionnPrice() {
 		
@@ -89,7 +92,7 @@ public class AndroidHomePage {
 		
 		common.AndroidUIScrollable("T-Shirt");
 		
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		List<MobileElement> Add2 = driver.findElements(AddtoCart);
 		
@@ -127,6 +130,48 @@ public class AndroidHomePage {
 		Assert.assertEquals(Shortitemtext, "1","Item not removed");
 		
 		driver.findElement(CheckoutBtn).click();
+	}
+	
+	public void ClickCart() {
+		driver.findElement(CheckoutBtn).click();
+	}
+	
+	public void ClickLogout() {
+		driver.findElement(SidePanelBtn).click();
+		common.WaitforPresentofElement(Logoutbtn);
+		driver.findElement(Logoutbtn).click();
+		
+	}
+	
+	public void VerifySingleProductName() {
+		common.WaitforPresentofElement(Productname);
+		String ProdName = driver.findElement(Productname).getText();
+		
+		driver.findElement(Productname).click();
+		
+		String itempageProdName = driver.findElement(ItemPageProdName).getText();
+		
+		driver.findElement(BackToProductbtn).click();
+		
+		Assert.assertEquals(itempageProdName, ProdName);
+		
+	}
+	
+	public void Add2ItemstoCart() throws InterruptedException {
+		common.WaitforPresentofElement(Productname);
+		
+		List<MobileElement> Add = driver.findElements(AddtoCart);
+		ItemAdded2 = new ArrayList<String>();
+		
+		
+		for(MobileElement add: Add) {
+			add.click();
+			Thread.sleep(1000);
+		}
+		
+		String Shortitemtext = driver.findElement(ShortItemInCart).getText();
+		
+		Assert.assertEquals(Shortitemtext, "2","Item not Added");
 	}
 
 }

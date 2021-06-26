@@ -35,7 +35,7 @@ public class AndroidCheckoutPage {
 	private static By FinishBtn = By.xpath("//android.view.ViewGroup[@content-desc='test-FINISH']");
 	private static By ThankyouforOrder = By.xpath("//android.widget.ScrollView[@content-desc='test-CHECKOUT: COMPLETE!']/android.view.ViewGroup/android.widget.TextView");
 	private static By BackHome= By.xpath("//android.view.ViewGroup[@content-desc='test-BACK HOME']");
-	
+	private static By Errormsg = By.xpath("//android.view.ViewGroup[@content-desc='test-Error message']/android.widget.TextView");
 	
 	public void VerifyItemsinCart() throws InterruptedException {
 		common.WaitforPresentofElement(Quantity);
@@ -122,6 +122,32 @@ public class AndroidCheckoutPage {
 		common.WaitforPresentofElement(ThankyouforOrder);
 		Assert.assertEquals(driver.findElement(ThankyouforOrder).getText(), "THANK YOU FOR YOU ORDER");
 		driver.findElement(BackHome).click();
+	}
+	
+	public void CheckoutWithErrorVerification() {
+		driver.findElement(CheckoutBtn).click();
+		driver.findElement(LastContinuebtn).click();
+		common.WaitforPresentofElement(Errormsg);
+		String FirstNameError = driver.findElement(Errormsg).getText();
+		Assert.assertEquals(FirstNameError, "First Name is required");
+		driver.findElement(FirstName).sendKeys("FirstName");
+		common.AndroidUIScrollable("CONTINUE");
+		driver.findElement(LastContinuebtn).click();
+		String LastNameError = driver.findElement(Errormsg).getText();
+		common.AndroidUIScrollable("Last Name");
+		Assert.assertEquals(LastNameError, "Last Name is required");
+		driver.findElement(LastName).sendKeys("LastName");
+		common.AndroidUIScrollable("CONTINUE");
+		driver.findElement(LastContinuebtn).click();
+		String PostalError = driver.findElement(Errormsg).getText();
+		Assert.assertEquals(PostalError, "Postal Code is required");
+		common.AndroidUIScrollable("Postal Code");
+		driver.findElement(ZipCode).sendKeys("1234");
+//		common.AndroidUIScrollable("CONTINUE");
+		driver.findElement(LastContinuebtn).click();
+		driver.findElement(FinishBtn).click();
+		common.WaitforPresentofElement(ThankyouforOrder);
+		Assert.assertEquals(driver.findElement(ThankyouforOrder).getText(), "ORDER CANT BE PLACED. SHOPPING CART EMPTY");
 	}
 
 }

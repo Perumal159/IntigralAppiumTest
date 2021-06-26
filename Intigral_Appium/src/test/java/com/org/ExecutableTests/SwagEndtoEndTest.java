@@ -88,5 +88,56 @@ public class SwagEndtoEndTest extends BaseSetup{
 		}
 
 	}
+	
+	@Test(priority=4)
+	public void VerifyZeroItemCheckout() throws InterruptedException  {
+
+		if(BaseSetup.Platform.equals("Android")) {
+			AndroidHomePage AHP = new AndroidHomePage(driver);
+			AndroidCheckoutPage ACP = new AndroidCheckoutPage(driver);
+			AHP.ClickCart();
+			ACP.CheckoutWithErrorVerification();
+			
+		}
+		else{
+			//Runs IOS Test
+		}
+
+	}
+	
+	@Test(priority=5)
+	public void VerifyserWithIssueProdName() throws InterruptedException  {
+
+		if(BaseSetup.Platform.equals("Android")) {
+			AndroidLoginPage ALP = new AndroidLoginPage(driver);
+			AndroidHomePage AHP = new AndroidHomePage(driver);
+			AndroidCheckoutPage ACP = new AndroidCheckoutPage(driver);
+			
+			AHP.ClickLogout();
+			ALP.Login("problem_user","secret_sauce");
+			AHP.VerifySingleProductName();
+			
+		}
+		else{
+			//Runs IOS Test
+		}
+
+	}
+	
+	@Test(priority=6)
+	public void VerifyserWithIssueAddtoCart() throws InterruptedException  {
+
+		if(BaseSetup.Platform.equals("Android")) {
+			AndroidLoginPage ALP = new AndroidLoginPage(driver);
+			AndroidHomePage AHP = new AndroidHomePage(driver);
+			AndroidCheckoutPage ACP = new AndroidCheckoutPage(driver);
+			
+			AHP.Add2ItemstoCart();
+		}
+		else{
+			//Runs IOS Test
+		}
+
+	}
 
 }
