@@ -1,0 +1,36 @@
+Table of Contents:
+    1.Overview
+    2.Testing Tools/Technologies
+    3.Scenarios Covered
+    4.Defects Identified
+
+1.Overview:
+The Environment selected was Windows environment hence the Android Application functionalities were tested. For the testing purpose an Android Simulator of Version 10 was used
+so that it functionality is verified on a stable and majorly used Android platform.
+
+2.Testing Tools/Technologies used:
+Basic tools/technologies used are mentioned below. For further information on the installation procedure and tools/Technologies, please go 
+through the README.md
+Java_v8
+Android Simultor version 10
+Maven
+Testng
+Node
+Appium Server
+
+3.Scenarios Covered:
+Login using invalid Credentials to verify proper Error message.
+Login using valid Credentials to verify Successfull login.
+Verify the product name and price in Homepage with the Item Description.
+Validate whether user is able to add products and remove products and perform successfull checkout.
+Verify if the user is not allowed to checkout when the shopping cart is empty.
+Verify if alternate user login is having the proper item in home page and item description page.
+Validate if the alternat user login is able to add item and remove item from cart and confirm.
+
+
+4.Defects Identified:
+The following issues are identified in the application,
+User is able to checkout without any item in the shopping cart. Ideally user should be prevented from checking out without any item in the shopping cart.
+User with credentials (problem_user/secret_sauce) is having issue with item name and image displayed in the home page when compared with item description page. On click of any product from home page the name, image of product is not matching with the name and image in the item description page.
+User with credentials (problem_user/secret_sauce) is unable to remove items that is added from the home page.
+User with credentials (problem_user/secret_sauce) is unable to add the product "Sauce Labs Bike Light".
