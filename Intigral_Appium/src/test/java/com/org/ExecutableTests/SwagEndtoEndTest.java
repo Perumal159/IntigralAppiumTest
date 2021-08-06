@@ -1,12 +1,12 @@
 package com.org.ExecutableTests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.org.PageObjects.AndroidCheckoutPage;
 import com.org.PageObjects.AndroidHomePage;
 import com.org.PageObjects.AndroidLoginPage;
+import com.org.PageObjects.BookStore.iOSBookStoreHome;
 import com.org.TestBaseSetup.BaseSetup;
 
 import io.appium.java_client.AppiumDriver;
@@ -15,18 +15,19 @@ import io.appium.java_client.MobileElement;
 public class SwagEndtoEndTest extends BaseSetup{
 
 	AppiumDriver<MobileElement> driver;
-
-
+	iOSBookStoreHome IBH;
+	
 
 	@BeforeClass
 	public void PreSetup() {
 		driver = GetDriver();
 		System.out.println("Opening Swag App on "+BaseSetup.Platform);
+		IBH = new iOSBookStoreHome(driver);
 	}
 
 
 	@Test(priority=0)
-	public void LoginFailure() {
+	public void LoginFailure() throws InterruptedException {
 		if(BaseSetup.Platform.equals("Android")) {
 			AndroidLoginPage ALP = new AndroidLoginPage(driver);
 
@@ -35,11 +36,12 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 		}
 		else{
+			IBH.LoadnVerifyHomepage();
 			//Runs IOS Test
 		}
 	}
 
-	@Test(priority=1)
+//	@Test(priority=1)
 	public void LoginSuccess() throws InterruptedException  {
 
 		if(BaseSetup.Platform.equals("Android")) {
@@ -56,7 +58,7 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 	}
 	
-	@Test(priority=2)
+//	@Test(priority=2)
 	public void VerifyItemsPricenDescription() throws InterruptedException  {
 
 		if(BaseSetup.Platform.equals("Android")) {
@@ -70,7 +72,7 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 	}
 	
-	@Test(priority=3)
+//	@Test(priority=3)
 	public void SuccessfullCheckoutWithaddnDelete() throws InterruptedException  {
 
 		if(BaseSetup.Platform.equals("Android")) {
@@ -89,7 +91,7 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 	}
 	
-	@Test(priority=4)
+//	@Test(priority=4)
 	public void VerifyZeroItemCheckout() throws InterruptedException  {
 
 		if(BaseSetup.Platform.equals("Android")) {
@@ -105,7 +107,7 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 	}
 	
-	@Test(priority=5)
+//	@Test(priority=5)
 	public void VerifyserWithIssueProdName() throws InterruptedException  {
 
 		if(BaseSetup.Platform.equals("Android")) {
@@ -124,7 +126,7 @@ public class SwagEndtoEndTest extends BaseSetup{
 
 	}
 	
-	@Test(priority=6)
+//	@Test(priority=6)
 	public void VerifyserWithIssueAddtoCart() throws InterruptedException  {
 
 		if(BaseSetup.Platform.equals("Android")) {

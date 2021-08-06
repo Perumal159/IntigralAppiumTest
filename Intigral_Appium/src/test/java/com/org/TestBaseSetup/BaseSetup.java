@@ -16,7 +16,7 @@ import io.appium.java_client.ios.IOSDriver;
 
 public class BaseSetup {
 
-	private static AppiumDriver<MobileElement> driver;
+	protected static AppiumDriver<MobileElement> driver;
 	static DesiredCapabilities Caps;
 	protected static String Platform;
 	
@@ -30,8 +30,8 @@ public static AppiumDriver LaunchAndroidApp() throws MalformedURLException {
 		
 		
 		Caps.setCapability("platformName", "Android");
-		Caps.setCapability("deviceName", "Android SDK built for x86");
-		Caps.setCapability("udid", "emulator-5554");
+		Caps.setCapability("deviceName", "Pixel_XL_API_29");
+//		Caps.setCapability("udid", "emulator-5554");
 		Caps.setCapability("platformVersion", "10");
 		
 		Caps.setCapability("appPackage", "com.swaglabsmobileapp");
@@ -50,9 +50,16 @@ public static AppiumDriver LaunchAndroidApp() throws MalformedURLException {
 		
 		Caps= new DesiredCapabilities();
 		
+		Caps.setCapability("platformName", "iOS");
+		Caps.setCapability("deviceName", "iPhone 12 Pro Max");
+		Caps.setCapability("platformVersion", "14.1");
+		Caps.setCapability("bundleId", "com.nsoojin.BookStore");
+		
 		URL url = new URL("http://127.0.0.1:4723/wd/hub");
 		
 		driver = new IOSDriver<MobileElement>(url,Caps);
+		
+		
 		
 		System.out.println("Successfully launching IOS Appp");
 		
@@ -75,7 +82,7 @@ public static AppiumDriver LaunchAndroidApp() throws MalformedURLException {
 	
 	@Parameters({"PlatformName"})
 	@BeforeClass
-	public void launchDriver(@Optional("Android") String PlatformName) {
+	public void launchDriver(@Optional("IOS") String PlatformName) {
 		try {
 			Platform = PlatformName;
 			initdriver(PlatformName);

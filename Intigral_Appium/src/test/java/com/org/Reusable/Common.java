@@ -1,6 +1,7 @@
 package com.org.Reusable;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -83,6 +84,20 @@ public class Common {
 		System.out.println("Presence of Element Located");
 	}
 
+	public void WaitforPageLoad(int time) {
+		driver.manage().timeouts().pageLoadTimeout(time, TimeUnit.SECONDS);
+		System.out.println("set timeout for pageload successfully");
+	}
+	
+	public void waitforAsyncScript(int time) {
+		driver.manage().timeouts().setScriptTimeout(time, TimeUnit.SECONDS);
+		System.out.println("set timeout for Async Script load successfully");
+	}
+	
+	public void ImplicitTimeout(int time) {
+		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+		System.out.println("set timeout for implicit successfully");
+	}
 	
 	
 }

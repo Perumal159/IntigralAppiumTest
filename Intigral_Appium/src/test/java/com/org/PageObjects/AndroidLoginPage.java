@@ -18,19 +18,22 @@ public class AndroidLoginPage {
 		common = new Common(driver);
 	}
 	
-	private static By UserName = By.id("test-Username");
-	private static By Password = By.id("test-Password");
-	private static By LoginBtn = By.id("test-LOGIN");
+	private static String UserName = "test-Username";
+	private static String Password = "test-Password";
+	private static String LoginBtn = "test-LOGIN";
 	private static By HomepageElement = By.xpath("//android.widget.TextView[@text='PRODUCTS']");
 	
-	public void Login(String username, String password) {
+	public void Login(String username, String password) throws InterruptedException {
 		
-		common.WaitforPresentofElement(UserName);
-		driver.findElement(UserName).clear();
-		driver.findElement(UserName).sendKeys(username);
-		driver.findElement(Password).clear();
-		driver.findElement(Password).sendKeys(password);
-		driver.findElement(LoginBtn).click();
+//		common.WaitforPresentofElement(UserName);
+		
+//		driver.findElementByAccessibilityId(password);
+		Thread.sleep(5000);
+		driver.findElementByAccessibilityId(UserName).clear();
+		driver.findElementByAccessibilityId(UserName).sendKeys(username);
+		driver.findElementByAccessibilityId(Password).clear();
+		driver.findElementByAccessibilityId(Password).sendKeys(password);
+		driver.findElementByAccessibilityId(LoginBtn).click();
 	}
 	
 	public void AssertElementHomePage() throws InterruptedException {
